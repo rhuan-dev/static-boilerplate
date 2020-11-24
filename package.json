@@ -4,17 +4,16 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "dev": "webpack --mode development",
-        "watch": "yarn run dev -- --watch",
-        "prod": "webpack --mode production"
+        "dev": "webpack serve --mode development",
+        "watch": "yarn run dev",
+        "prod": "webpack --mode production --config webpack.prod.js"
     },
     "devDependencies": {
         "@babel/core": "^7.12.7",
         "@babel/preset-env": "^7.12.7",
         "autoprefixer": "^10.0.2",
         "babel-loader": "^8.2.1",
-        "browser-sync": "^2.26.13",
-        "browser-sync-webpack-plugin": "^2.2.2",
+        "compression-webpack-plugin": "^6.1.1",
         "css-loader": "^5.0.1",
         "handlebars": "^4.7.6",
         "handlebars-loader": "^1.7.1",
@@ -23,8 +22,11 @@
         "node-sass": "^5.0.0",
         "postcss-loader": "^4.1.0",
         "sass-loader": "^10.1.0",
+        "style-loader": "^2.0.0",
         "webpack": "^5.6.0",
-        "webpack-cli": "^4.2.0"
+        "webpack-cli": "^4.2.0",
+        "webpack-dev-server": "^3.11.0",
+        "webpack-merge": "^5.4.0"
     },
     "dependencies": {
         "swiper": "^6.3.5"

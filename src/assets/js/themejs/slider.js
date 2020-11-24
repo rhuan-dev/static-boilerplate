@@ -2,11 +2,11 @@ import Swiper from "swiper";
 
 new Swiper('.swiper-container', {
     // Optional parameters
-    direction: 'vertical',
-    loop     : true,
-
+    loop         : true,
+    slidesPerView: 2,
+    spaceBetween: 30,
     // If we need pagination
-    pagination: {
+    pagination   : {
         el: '.swiper-pagination',
     },
 

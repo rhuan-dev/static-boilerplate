@@ -1,34 +1,25 @@
-const path    = require('path')
-const webpack = require('webpack')
-
+const path                 = require('path')
 const HtmlWebpackPlugin    = require('html-webpack-plugin')
-const BrowserSyncPlugin    = require('browser-sync-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = {
-    entry  : {
+    entry    : {
         app: "./src/assets/js/app.js",
         obg: "./src/assets/js/obg.js"
     },
-    output : {
+    output   : {
         filename: "./assets/js/[name].bundle.js",
         path    : path.resolve(__dirname, "dist")
     },
-    module : {
+    devServer: {
+        port            : 3000,
+        open            : true,
+        hot             : true,
+        contentBase     : path.resolve(__dirname, "./src/views"),
+        watchContentBase: true,
+    },
+    module   : {
         rules: [
-            {
-                test   : /\.(scss|css)$/,
-                exclude: /node_modules/,
-                use    : [
-                    "style-loader",
-                    {
-                        loader : "css-loader",
-                        options: {sourceMap: true},
-                    },
-                    {loader: "postcss-loader", options: {sourceMap: true}},
-                    {loader: "sass-loader", options: {sourceMap: true}},
-                ],
-            },
             {
                 test   : /\.ejs$/,
                 loader : 'ejs-loader',
@@ -40,18 +31,48 @@ const config = {
                 test  : /\.hbs$/,
                 loader: 'handlebars-loader',
             },
+            {
+                test   : /\.css$/,
+                use    : [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader : 'css-loader',
+                        options: {
+                            importLoaders: 1
+                        }
+                    },
+                    'postcss-loader'
+                ],
+                exclude: /\.module\.css$/
+            },
+            {
+                test   : /\.css$/,
+                use    : [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader : 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules      : true
+                        }
+                    },
+                    'postcss-loader'
+                ],
+                include: /\.module\.css$/
+            },
+            {
+                test: /\.scss$/,
+                use : [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader'
+                ]
+            }
         ],
     },
-    plugins: [
-        new BrowserSyncPlugin({
-            host  : 'localhost',
-            port  : 3000,
-            server: {baseDir: ['dist']}
-        }),
-
+    plugins  : [
         new MiniCssExtractPlugin({
-            filename     : "[name].css",
-            chunkFilename: '[id].css',
+            filename: "./assets/css/[name].css"
         }),
 
         new HtmlWebpackPlugin({
