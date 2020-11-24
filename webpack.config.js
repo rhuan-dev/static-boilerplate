@@ -1,8 +1,9 @@
 const path    = require('path')
 const webpack = require('webpack')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const HtmlWebpackPlugin    = require('html-webpack-plugin')
+const BrowserSyncPlugin    = require('browser-sync-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = {
     entry  : {
@@ -15,6 +16,19 @@ const config = {
     },
     module : {
         rules: [
+            {
+                test   : /\.(scss|css)$/,
+                exclude: /node_modules/,
+                use    : [
+                    "style-loader",
+                    {
+                        loader : "css-loader",
+                        options: {sourceMap: true},
+                    },
+                    {loader: "postcss-loader", options: {sourceMap: true}},
+                    {loader: "sass-loader", options: {sourceMap: true}},
+                ],
+            },
             {
                 test   : /\.ejs$/,
                 loader : 'ejs-loader',
@@ -33,6 +47,11 @@ const config = {
             host  : 'localhost',
             port  : 3000,
             server: {baseDir: ['dist']}
+        }),
+
+        new MiniCssExtractPlugin({
+            filename     : "[name].css",
+            chunkFilename: '[id].css',
         }),
 
         new HtmlWebpackPlugin({

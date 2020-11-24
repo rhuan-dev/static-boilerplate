@@ -1,0 +1,4 @@
+img {
+    @include img-responsive(inline-block);
+    vertical-align : top;
+}

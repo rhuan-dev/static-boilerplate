@@ -1,0 +1,29 @@
+.container {
+    display       : block;
+    margin-right  : auto;
+    margin-left   : auto;
+    padding-right : 15px;
+    padding-left  : 15px;
+    max-width     : 480px;
+    width         : 100%;
+
+    // 768
+    @media (min-width : $screen-768-min) {
+        max-width : 720px;
+    }
+
+    // 992
+    @media (min-width : $screen-992-min) {
+        max-width : 990px;
+    }
+
+    // 1200
+    @media (min-width : $screen-1200-min) {
+        max-width : 1170px;
+    }
+
+    // 1600
+    @media (min-width : $screen-1600-min) {
+        max-width : 1440px;
+    }
+}
