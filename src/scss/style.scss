@@ -1,11 +1,3 @@
-@import "~swiper/swiper-bundle.min.css";
-
-img {
-    max-width      : 100%;
-    height         : auto;
-    vertical-align : top;
-}
-
 /**
 Settings
  */
@@ -14,29 +6,29 @@ Settings
 /**
 Tools
  */
-//@import "tools/*.scss";
+@import "tools/*.scss";
 
 /**
 Generic
  */
-//@import "generic/*";
+@import "generic/*";
 
 /**
 Base
  */
-//@import "base/*";
+@import "base/*";
 
 /**
 Objects
  */
-//@import "objects/*";
+@import "objects/*";
 
 /**
 Components
  */
-//@import "components/**/*.scss";
+@import "components/**/*.scss";
 
 /**
 Trumps
  */
-//@import "trumps/*";
+@import "trumps/*";
