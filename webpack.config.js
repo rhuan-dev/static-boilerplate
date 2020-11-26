@@ -1,6 +1,7 @@
 const path                 = require('path')
 const HtmlWebpackPlugin    = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyPlugin           = require('copy-webpack-plugin')
 
 const config = {
     entry    : {
@@ -8,28 +9,26 @@ const config = {
         obg: "./src/assets/js/obg.js"
     },
     output   : {
-        filename: "./assets/js/[name].bundle.js",
-        path    : path.resolve(__dirname, "dist")
+        filename  : "assets/js/[name].bundle.js",
+        path      : path.resolve(__dirname, "dist"),
+        publicPath: ""
     },
     devServer: {
         port            : 3000,
         open            : true,
-        hot             : true,
         contentBase     : path.resolve(__dirname, "./src/views"),
         watchContentBase: true,
+        hot             : true
     },
     module   : {
         rules: [
             {
-                test   : /\.ejs$/,
-                loader : 'ejs-loader',
-                options: {
-                    esModule: false
-                }
-            },
-            {
                 test  : /\.hbs$/,
                 loader: 'handlebars-loader',
+            },
+            {
+                test  : /\.html$/,
+                loader: 'html-loader'
             },
             {
                 test   : /\.css$/,
@@ -65,15 +64,33 @@ const config = {
                 use : [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'sass-loader',
-                    'import-glob-loader'
+                    'sass-loader'
                 ]
-            }
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                use : [{
+                    loader : 'file-loader', // Or `url-loader` or your other loader
+                    options: {
+                        publicPath: "/assets/images",
+                        name      : "[name].[ext]"
+                    }
+                }],
+            },
         ],
     },
     plugins  : [
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: './src/assets/images',
+                    to  : './assets/images/'
+                }
+            ],
+        }),
+
         new MiniCssExtractPlugin({
-            filename: "./assets/css/[name].css"
+            filename: "assets/css/[name].css"
         }),
 
         new HtmlWebpackPlugin({
