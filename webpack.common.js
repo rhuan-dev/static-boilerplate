@@ -68,14 +68,18 @@ const config = {
                 ]
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                use : [{
-                    loader : 'file-loader', // Or `url-loader` or your other loader
-                    options: {
-                        publicPath: "/assets/images",
-                        name      : "[name].[ext]"
+                test   : /\.(jpe?g|png|gif|svg)$/i,
+                include: path.resolve(__dirname, 'src/assets/images'),
+                use    : [
+                    {
+                        loader : "file-loader",
+                        options: {
+                            name      : "[name].[ext]",
+                            outputPath: "assets/images/",
+                            publicPath: "../../assets/images/"
+                        }
                     }
-                }],
+                ]
             },
         ],
     },
@@ -83,8 +87,8 @@ const config = {
         new CopyPlugin({
             patterns: [
                 {
-                    from: './src/assets/images',
-                    to  : './assets/images/'
+                    from: 'src/assets/images',
+                    to  : 'assets/images'
                 }
             ],
         }),

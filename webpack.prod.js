@@ -1,5 +1,5 @@
 const {merge}              = require('webpack-merge')
-const common               = require('./webpack.config')
+const common               = require('./webpack.common')
 const CompressionPlugin    = require('compression-webpack-plugin')
 const CssMinimizerPlugin   = require('css-minimizer-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
@@ -29,7 +29,7 @@ const config = merge(common, {
                                 removeViewBox: false,
                             },
                         ],
-                    }],
+                    }]
                 ],
             },
         }),
