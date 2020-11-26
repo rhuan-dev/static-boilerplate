@@ -58,7 +58,8 @@ const config = {
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader',
-                    'import-glob-loader'
+                    'import-glob-loader',
+                    'postcss-loader'
                 ]
             },
             {
