@@ -4,23 +4,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin           = require('copy-webpack-plugin')
 
 const config = {
-    entry    : {
+    entry  : {
         app: "./src/assets/js/app.js",
         obg: "./src/assets/js/obg.js"
     },
-    output   : {
+    output : {
         filename  : "assets/js/[name].bundle.js",
         path      : path.resolve(__dirname, "dist"),
         publicPath: ""
     },
-    devServer: {
-        port            : 3000,
-        open            : true,
-        contentBase     : path.resolve(__dirname, "./src/views"),
-        watchContentBase: true,
-        hot             : true
-    },
-    module   : {
+    module : {
         rules: [
             {
                 test  : /\.hbs$/,
@@ -64,7 +57,8 @@ const config = {
                 use : [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    'sass-loader'
+                    'sass-loader',
+                    'import-glob-loader'
                 ]
             },
             {
@@ -76,14 +70,14 @@ const config = {
                         options: {
                             name      : "[name].[ext]",
                             outputPath: "assets/images/",
-                            publicPath: "../../assets/images/"
+                            publicPath: "../images/"
                         }
                     }
                 ]
             },
         ],
     },
-    plugins  : [
+    plugins: [
         new CopyPlugin({
             patterns: [
                 {

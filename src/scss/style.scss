@@ -1,5 +1,35 @@
-body {
-    background : url("../assets/images/test.jpg");
-}
+/**
+Settings
+ */
+@import "settings/*.scss";
 
+/**
+Tools
+ */
+@import "tools/*.scss";
+
+/**
+Generic
+ */
+@import "generic/*";
+
+/**
+Base
+ */
+@import "base/*";
+
+/**
+Objects
+ */
+@import "objects/*";
+
+/**
+Components
+ */
+@import "components/**/*.scss";
+
+/**
+Trumps
+ */
+@import "trumps/*";
 

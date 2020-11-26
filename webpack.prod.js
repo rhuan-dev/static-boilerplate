@@ -3,10 +3,13 @@ const common               = require('./webpack.common')
 const CompressionPlugin    = require('compression-webpack-plugin')
 const CssMinimizerPlugin   = require('css-minimizer-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
+const {CleanWebpackPlugin}   = require('clean-webpack-plugin')
 
 const config = merge(common, {
     module      : {},
     plugins     : [
+        new CleanWebpackPlugin(),
+
         new ImageMinimizerPlugin({
             deleteOriginalAssets: false,
             filename            : 'assets/images/webp/[name].webp',
