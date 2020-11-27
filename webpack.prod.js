@@ -3,7 +3,7 @@ const common               = require('./webpack.common')
 const CompressionPlugin    = require('compression-webpack-plugin')
 const CssMinimizerPlugin   = require('css-minimizer-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
-const {CleanWebpackPlugin}   = require('clean-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 const config = merge(common, {
     module      : {},
@@ -42,7 +42,18 @@ const config = merge(common, {
     optimization: {
         minimize    : true,
         minimizer   : [
-            new CssMinimizerPlugin()
+            new CssMinimizerPlugin({
+                minimizerOptions: {
+                    preset: [
+                        'default',
+                        {
+                            discardComments: {
+                                removeAll: true
+                            }
+                        }
+                    ]
+                }
+            })
         ],
         runtimeChunk: 'single',
         splitChunks : {

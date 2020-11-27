@@ -1,8 +1,14 @@
-module.exports = {
+module.exports = ({env}) => ({
     plugins: [
-        require('precss'),
-        require('autoprefixer')({
-            overrideBrowserslist: "last 4 versions"
-        })
+        require('rucksack-css'),
+        env === 'production' ?
+        [
+            require('postcss-combine-media-query'),
+            require('autoprefixer')({
+                overrideBrowserslist: "last 4 versions"
+            })
+        ]
+                             :
+        false,
     ]
-};
+})
