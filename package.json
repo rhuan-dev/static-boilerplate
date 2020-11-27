@@ -9,7 +9,8 @@
         "watch": "yarn run dev",
         "prod": "webpack --mode production --config webpack.prod.js",
         "build": "yarn run prod",
-        "online": "http-server dist"
+        "online": "http-server dist",
+        "clean": "rm -rf dist"
     },
     "devDependencies": {
         "@babel/core": "^7.12.9",
