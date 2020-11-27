@@ -125,7 +125,7 @@ const config = {
             template          : "./src/views/pages/politica-de-privacidade.hbs",
             templateParameters: require("./site-data.json"),
             chunks            : ['obg']
-        }),
+        })
     ]
 }
 

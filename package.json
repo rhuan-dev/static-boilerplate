@@ -4,10 +4,12 @@
     "main"           : "index.js",
     "license"        : "MIT",
     "scripts"        : {
-        "dev"  : "webpack serve --mode development --config webpack.dev.js",
-        "watch": "yarn run dev",
-        "prod" : "webpack --mode production --config webpack.prod.js",
-        "build": "yarn run prod"
+        "dev"      : "webpack serve --mode development --config webpack.dev.js",
+        "dev:build": "webpack --mode development --config webpack.dev.js",
+        "watch"    : "yarn run dev",
+        "prod"     : "webpack --mode production --config webpack.prod.js",
+        "build"    : "yarn run prod",
+        "online"   : "http-server dist"
     },
     "devDependencies": {
         "@babel/core"                   : "^7.12.7",
@@ -23,6 +25,7 @@
         "handlebars"                    : "^4.7.6",
         "handlebars-loader"             : "^1.7.1",
         "html-webpack-plugin"           : "^4.5.0",
+        "http-server"                   : "^0.12.3",
         "image-minimizer-webpack-plugin": "^1.0.0",
         "imagemin-gifsicle"             : "^7.0.0",
         "imagemin-jpegtran"             : "^7.0.0",
