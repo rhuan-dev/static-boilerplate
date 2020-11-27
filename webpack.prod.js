@@ -13,6 +13,7 @@ const config = merge(common, {
         new ImageMinimizerPlugin({
             deleteOriginalAssets: false,
             filename            : 'assets/images/webp/[name].webp',
+            exclude             : /\.svg$/,
             minimizerOptions    : {
                 plugins: ['imagemin-webp'],
             },
