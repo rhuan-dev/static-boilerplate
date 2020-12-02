@@ -16,8 +16,13 @@ const config = {
     module : {
         rules: [
             {
-                test  : /\.hbs$/,
-                loader: 'handlebars-loader',
+                test: /\.hbs$/,
+                use : {
+                    loader : "handlebars-loader",
+                    options: {
+                        helperDirs: path.join(__dirname, 'helpers'),
+                    }
+                }
             },
             {
                 test  : /\.html$/,
@@ -73,6 +78,10 @@ const config = {
                 ]
             },
             {
+                test  : /\.(woff|woff2|eot|ttf|otf)$/,
+                loader: "url-loader",
+            },
+            {
                 test   : /\.(jpe?g|png|gif|svg)$/i,
                 include: path.resolve(__dirname, 'src/assets/images'),
                 use    : [
@@ -95,6 +104,11 @@ const config = {
                     from            : './src/assets/images',
                     to              : 'assets/images',
                     noErrorOnMissing: true,
+                },
+                {
+                    from            : "./src/assets/fonts",
+                    to              : 'assets/fonts',
+                    noErrorOnMissing: true
                 }
             ],
         }),
