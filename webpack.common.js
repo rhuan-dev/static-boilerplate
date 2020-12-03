@@ -78,8 +78,16 @@ const config = {
                 ]
             },
             {
-                test  : /\.(woff|woff2|eot|ttf|otf)$/,
-                loader: "url-loader",
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+                use : {
+                    loader : "url-loader",
+                    options: {
+                        limit     : 8192,
+                        name      : "[folder]/[name].[ext]",
+                        outputPath: 'assets/fonts',
+                        publicPath: "../../assets/fonts"
+                    },
+                }
             },
             {
                 test   : /\.(jpe?g|png|gif|svg)$/i,
