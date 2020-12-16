@@ -3,7 +3,7 @@ module.exports = ({env}) => ({
         require('rucksack-css'),
         env === 'production' ?
         [
-            require('postcss-combine-media-query'),
+            require('postcss-sort-media-queries'),
             require('autoprefixer')({
                 overrideBrowserslist: "last 4 versions"
             })

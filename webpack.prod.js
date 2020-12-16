@@ -7,12 +7,14 @@ const CssMinimizerPlugin   = require('css-minimizer-webpack-plugin')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const PurgecssPlugin       = require('purgecss-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const PATHS = {
     src: path.join(__dirname, 'src')
 }
 
 const config = merge(common, {
+    mode        : 'production',
     devtool     : false,
     module      : {},
     plugins     : [
@@ -50,24 +52,17 @@ const config = merge(common, {
             paths: glob.sync(`${PATHS.src}/**/*`, {nodir: true}),
         }),
 
-        new CompressionPlugin(),
+        new CompressionPlugin({
+            test: /\.js(\?.*)?$/i
+        }),
+        
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'server',
+            openAnalyzer: true,
+        })
     ],
     optimization: {
         minimize    : true,
-        minimizer   : [
-            new CssMinimizerPlugin({
-                minimizerOptions: {
-                    preset: [
-                        'default',
-                        {
-                            discardComments: {
-                                removeAll: true
-                            }
-                        }
-                    ]
-                }
-            })
-        ],
         runtimeChunk: 'single',
         splitChunks : {
             cacheGroups: {
