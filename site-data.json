@@ -1,19 +1,6 @@
 {
-    "generalConfig"  : {
-        "siteName"  : "Nome do Site",
-        "themeColor": "#333333"
-    },
-    "pageTitles"     : {
-        "obrigadoBoleto"       : "Obrigado Boleto",
-        "obrigadoCartao"       : "Obrigado Cartão",
-        "termosDeUso"          : "Termos de Uso",
-        "politicaDePrivacidade": "Política de Privacidade"
-    },
-    "pageDescription": {
-        "home"                 : "Descrição Página Inicial",
-        "obrigadoBoleto"       : "Descrição Obrigado Boleto",
-        "obrigadoCartao"       : "Descrição Obrigado Cartão",
-        "termosDeUso"          : "Descrição Termos de Uso",
-        "politicaDePrivacidade": "Descrição Política de Privacidade"
-    }
+    "title"  : "Nome do Site",
+    "description": "",
+    "slogan": "",
+    "themeColor": "#333333"
 }
